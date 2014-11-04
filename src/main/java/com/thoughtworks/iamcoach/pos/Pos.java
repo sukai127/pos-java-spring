@@ -1,7 +1,7 @@
 package com.thoughtworks.iamcoach.pos;
 
 import com.thoughtworks.iamcoach.pos.model.CartItem;
-import com.thoughtworks.iamcoach.pos.service.PromotionService;
+import com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,22 +9,22 @@ import java.util.List;
 
 public class Pos {
     private Scanner scanner;
-    private PromotionService promotionService;
+    private PromotionServiceImpl promotionServiceImpl;
 
     public Pos() {
     }
 
-    public Pos(Scanner scanner, PromotionService promotionService) {
+    public Pos(Scanner scanner, PromotionServiceImpl promotionServiceImpl) {
         this.scanner = scanner;
-        this.promotionService = promotionService;
+        this.promotionServiceImpl = promotionServiceImpl;
     }
 
     public Scanner getScanner() {
         return scanner;
     }
 
-    public PromotionService getPromotionService() {
-        return promotionService;
+    public PromotionServiceImpl getPromotionServiceImpl() {
+        return promotionServiceImpl;
     }
 
     public void printInventory(List<String> barcodes) throws Exception {
@@ -49,7 +49,7 @@ public class Pos {
 
         for(CartItem cartItem : cartItemList){
             totalMoney += cartItem.getCount() * cartItem.getProduct().getPrice();
-            finalMoney += this.getPromotionService().calculateMoney(cartItem);
+            finalMoney += this.getPromotionServiceImpl().calculateMoney(cartItem);
         }
         discountMoney = totalMoney - finalMoney;
         return "\n\t\t\t\t\t优惠前:"+ totalMoney+
@@ -67,7 +67,7 @@ public class Pos {
             stringBuffer.append(" \t"+cartItem.getProduct().getUnit());
             stringBuffer.append(" \t"+cartItem.getProduct().getPrice());
             stringBuffer.append(" \t"+cartItem.getCount());
-            stringBuffer.append(" \t"+this.getPromotionService().calculateMoney(cartItem)+"\n");
+            stringBuffer.append(" \t"+this.getPromotionServiceImpl().calculateMoney(cartItem)+"\n");
         }
         return stringBuffer.toString();
     }

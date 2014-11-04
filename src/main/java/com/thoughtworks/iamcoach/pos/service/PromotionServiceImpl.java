@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PromotionService {
+public class PromotionServiceImpl {
 
     private PromotionDaoImpl promotionDaoImpl = new PromotionDaoImpl();
 
