@@ -1,7 +1,7 @@
 package com.thoughtworks.iamcoach.pos;
 
 import com.thoughtworks.iamcoach.pos.model.CartItem;
-import com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl;
+import com.thoughtworks.iamcoach.pos.service.PromotionService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,22 +9,22 @@ import java.util.List;
 
 public class Pos {
     private Scanner scanner;
-    private PromotionServiceImpl promotionServiceImpl;
+    private PromotionService promotionService;
 
     public Pos() {
     }
 
-    public Pos(Scanner scanner, PromotionServiceImpl promotionServiceImpl) {
+    public Pos(Scanner scanner, PromotionService promotionService) {
         this.scanner = scanner;
-        this.promotionServiceImpl = promotionServiceImpl;
+        this.promotionService = promotionService;
     }
 
     public Scanner getScanner() {
         return scanner;
     }
 
-    public PromotionServiceImpl getPromotionServiceImpl() {
-        return promotionServiceImpl;
+    public PromotionService getPromotionServiceImpl() {
+        return promotionService;
     }
 
     public void printInventory(List<String> barcodes) throws Exception {

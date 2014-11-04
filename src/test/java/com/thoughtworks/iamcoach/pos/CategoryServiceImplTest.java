@@ -1,6 +1,7 @@
 package com.thoughtworks.iamcoach.pos;
 
 import com.thoughtworks.iamcoach.pos.model.Category;
+import com.thoughtworks.iamcoach.pos.service.CategoryService;
 import com.thoughtworks.iamcoach.pos.service.CategoryServiceImpl;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class CategoryServiceImplTest {
     @Test
     public void should_return_category_when_input_productId() throws SQLException {
         
-        CategoryServiceImpl categryService = new CategoryServiceImpl();
+        CategoryService categryService = new CategoryServiceImpl();
         Category category = categryService.getCategory(1);
 
         assertThat(category.getName()).isEqualTo("饮料");

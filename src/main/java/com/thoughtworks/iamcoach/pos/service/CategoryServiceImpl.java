@@ -6,10 +6,11 @@ import com.thoughtworks.iamcoach.pos.model.Category;
 
 import java.sql.SQLException;
 
-public class CategoryServiceImpl {
+public class CategoryServiceImpl implements CategoryService {
 
     private CategoryDao categoryDao = new CategoryDaoImpl();
 
+    @Override
     public Category getCategory(int id) throws SQLException {
         return categoryDao.getCategory(id);
     }

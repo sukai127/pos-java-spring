@@ -1,4 +1,5 @@
 import com.thoughtworks.iamcoach.pos.*;
+import com.thoughtworks.iamcoach.pos.service.PromotionService;
 import com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl;
 import com.thoughtworks.iamcoach.pos.utils.FileUtils;
 
@@ -9,8 +10,8 @@ public class App {
         try {
             List list = FileUtils.get("cart.txt");
             Scanner scanner = new BarcodeScanner();
-            PromotionServiceImpl promotionServiceImpl = new PromotionServiceImpl();
-            Pos pos = new Pos(scanner, promotionServiceImpl);
+            PromotionService promotionService = new PromotionServiceImpl();
+            Pos pos = new Pos(scanner, promotionService);
             pos.printInventory(list);
 
         } catch (Exception e) {

@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PromotionServiceImpl {
+public class PromotionServiceImpl implements PromotionService {
 
     private PromotionDao promotionDao = new PromotionDaoImpl();
 
+    @Override
     public double calculateMoney(CartItem cartItem) {
 
         List<Promotion> list = cartItem.getProduct().getPromotions();
@@ -32,6 +33,7 @@ public class PromotionServiceImpl {
     }
 
 
+    @Override
     public int getDiscount(int id){
 
         try {
@@ -41,6 +43,7 @@ public class PromotionServiceImpl {
         }
     }
 
+    @Override
     public List<Promotion> getPromotionList(int id) throws SQLException {
 
         List<Integer> promotionTypes = promotionDao.getPromotionTypes(id);

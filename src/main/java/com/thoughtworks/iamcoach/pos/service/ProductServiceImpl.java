@@ -7,19 +7,20 @@ import com.thoughtworks.iamcoach.pos.model.Product;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProductServiceImpl {
+public class ProductServiceImpl implements ProductService {
 
     private ProductDao productDao = new ProductDaoImpl();
-    private CategoryServiceImpl categoryServiceImpl = new CategoryServiceImpl();
-    private PromotionServiceImpl promotionServiceImpl = new PromotionServiceImpl();
+    private CategoryService categoryService = new CategoryServiceImpl();
+    private PromotionService promotionService = new PromotionServiceImpl();
 
+    @Override
     public List<Product> getProductList() throws SQLException {
 
         List<Product> productList = productDao.getProductList();
 
         for(Product product : productList){
-            product.setCategory(categoryServiceImpl.getCategory(product.getId()));
-            product.setPromotions(promotionServiceImpl.getPromotionList(product.getId()));
+            product.setCategory(categoryService.getCategory(product.getId()));
+            product.setPromotions(promotionService.getPromotionList(product.getId()));
         }
 
         return productList;

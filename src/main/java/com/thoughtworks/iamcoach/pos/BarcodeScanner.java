@@ -2,6 +2,7 @@ package com.thoughtworks.iamcoach.pos;
 
 import com.thoughtworks.iamcoach.pos.model.CartItem;
 import com.thoughtworks.iamcoach.pos.model.Product;
+import com.thoughtworks.iamcoach.pos.service.ProductService;
 import com.thoughtworks.iamcoach.pos.service.ProductServiceImpl;
 
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ import java.util.List;
 public class BarcodeScanner implements Scanner{
     public Product getProduct(String barcode) throws Exception {
 
-        ProductServiceImpl productServiceImpl = new ProductServiceImpl();
-        List<Product> list = productServiceImpl.getProductList();
+        ProductService productService = new ProductServiceImpl();
+        List<Product> list = productService.getProductList();
 
         for(Product product : list){
             if(product.getBarcode().equals(barcode)){

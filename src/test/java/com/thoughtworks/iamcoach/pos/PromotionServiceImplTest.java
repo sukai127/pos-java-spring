@@ -1,6 +1,7 @@
 package com.thoughtworks.iamcoach.pos;
 
 import com.thoughtworks.iamcoach.pos.model.*;
+import com.thoughtworks.iamcoach.pos.service.PromotionService;
 import com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl;
 import org.junit.Test;
 
@@ -21,9 +22,9 @@ public class PromotionServiceImplTest {
 
         Product product = new Product(1,"ITEM000001","可乐","瓶",3.00,null,list);
         CartItem cartItem = new CartItem(product,6);
-        PromotionServiceImpl promotionServiceImpl = new PromotionServiceImpl();
+        PromotionService promotionService = new PromotionServiceImpl();
 
-        double money = promotionServiceImpl.calculateMoney(cartItem);
+        double money = promotionService.calculateMoney(cartItem);
 
         assertThat(money).isEqualTo(12);
     }
@@ -31,18 +32,18 @@ public class PromotionServiceImplTest {
     @Test
     public void should_return_75_when_input_productId() throws Exception{
 
-        PromotionServiceImpl promotionServiceImpl = new PromotionServiceImpl();
+        PromotionService promotionService = new PromotionServiceImpl();
 
-        int result = promotionServiceImpl.getDiscount(2);
+        int result = promotionService.getDiscount(2);
 
         assertThat(result).isEqualTo(75);
     }
 
     @Test
     public void should_return_promotionList_when_input_productId() throws SQLException {
-        PromotionServiceImpl promotionServiceImpl = new PromotionServiceImpl();
+        PromotionService promotionService = new PromotionServiceImpl();
 
-        List<Promotion> promotions = promotionServiceImpl.getPromotionList(2);
+        List<Promotion> promotions = promotionService.getPromotionList(2);
 
         assertThat(promotions.size()).isEqualTo(3);
     }
