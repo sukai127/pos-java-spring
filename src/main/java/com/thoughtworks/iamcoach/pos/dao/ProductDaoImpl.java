@@ -5,7 +5,7 @@ import com.thoughtworks.iamcoach.pos.model.Product;
 import java.sql.*;
 import java.util.*;
 
-public class ProductDao extends DbUtils{
+public class ProductDaoImpl extends DbUtils{
 
     private Connection connection;
     private PreparedStatement preparedStatement;
