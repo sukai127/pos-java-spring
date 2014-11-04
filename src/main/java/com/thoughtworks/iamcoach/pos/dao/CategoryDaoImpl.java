@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CategoryDao extends DbUtils{
+public class CategoryDaoImpl extends DbUtils{
 
     private Connection connection;
     private PreparedStatement preparedStatement;
