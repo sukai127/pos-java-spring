@@ -10,6 +10,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class BarcodeScanner implements Scanner{
+
+    private ProductService productService;
+    public BarcodeScanner(ProductService productService) {
+        this.productService = productService;
+    }
+
+    public BarcodeScanner(){
+
+    }
+
     public Product getProduct(String barcode) throws Exception {
 
         ProductService productService = new ProductServiceImpl();
