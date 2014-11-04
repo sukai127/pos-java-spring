@@ -6,7 +6,7 @@ import com.thoughtworks.iamcoach.pos.model.Product;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProductService {
+public class ProductServiceImpl {
 
     private ProductDaoImpl productDaoImpl = new ProductDaoImpl();
     private CategoryServiceImpl categoryServiceImpl = new CategoryServiceImpl();
