@@ -1,21 +1,37 @@
 package com.thoughtworks.iamcoach.pos;
 
+import com.google.common.collect.ImmutableList;
+import com.thoughtworks.iamcoach.pos.dao.ProductDaoImpl;
+import com.thoughtworks.iamcoach.pos.model.Category;
 import com.thoughtworks.iamcoach.pos.model.Product;
 import com.thoughtworks.iamcoach.pos.service.ProductService;
 import com.thoughtworks.iamcoach.pos.service.ProductServiceImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ProductServiceImplTest {
 
     public static ProductService productService;
 
     @BeforeClass
-    public static void beforeClass(){
-        productService = new ProductServiceImpl();
+    public static void beforeClass() throws SQLException {
+
+        ProductDaoImpl productDao = mock(ProductDaoImpl.class);
+
+        ImmutableList<Product> products = ImmutableList.of(
+                new Product(1, "ITEM000000", "可乐", "瓶", 3, new Category(1,"饮料"), null),
+                new Product(2, "ITEM000001", "雪碧", "瓶", 3.5, new Category(1,"饮料"), null),
+                new Product(3, "ITEM000002", "苹果", "斤", 4.5, new Category(2,"水果"), null));
+
+        when(productDao.getProductList()).thenReturn(products);
+        productService = new ProductServiceImpl(productDao);
     }
 
     @Test
@@ -23,9 +39,8 @@ public class ProductServiceImplTest {
 
         List<Product> productList = productService.getProductList();
 
-        assertThat(productList.size()).isEqualTo(6);
+        assertThat(productList.size()).isEqualTo(3);
         assertThat(productList.get(0).getCategory().getName()).isEqualTo("饮料");
         assertThat(productList.get(0).getName()).isEqualTo("可乐");
-        assertThat(productList.get(1).getPromotions().size()).isEqualTo(3);
     }
 }

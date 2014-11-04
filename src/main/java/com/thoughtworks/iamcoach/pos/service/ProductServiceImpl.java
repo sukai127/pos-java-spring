@@ -9,9 +9,17 @@ import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
 
-    private ProductDao productDao = new ProductDaoImpl();
+    private ProductDao productDao;
     private CategoryService categoryService = new CategoryServiceImpl();
     private PromotionService promotionService = new PromotionServiceImpl();
+
+    public ProductServiceImpl(ProductDaoImpl productDao) {
+        this.productDao = productDao;
+    }
+
+    public ProductServiceImpl(){
+
+    }
 
     @Override
     public List<Product> getProductList() throws SQLException {
