@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductService {
 
     private ProductDaoImpl productDaoImpl = new ProductDaoImpl();
-    private CategoryService categoryService = new CategoryService();
+    private CategoryServiceImpl categoryServiceImpl = new CategoryServiceImpl();
     private PromotionService promotionService = new PromotionService();
 
     public List<Product> getProductList() throws SQLException {
@@ -17,7 +17,7 @@ public class ProductService {
         List<Product> productList = productDaoImpl.getProductList();
 
         for(Product product : productList){
-            product.setCategory(categoryService.getCategory(product.getId()));
+            product.setCategory(categoryServiceImpl.getCategory(product.getId()));
             product.setPromotions(promotionService.getPromotionList(product.getId()));
         }
 

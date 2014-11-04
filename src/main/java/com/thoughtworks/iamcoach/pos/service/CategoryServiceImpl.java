@@ -5,7 +5,7 @@ import com.thoughtworks.iamcoach.pos.model.Category;
 
 import java.sql.SQLException;
 
-public class CategoryService {
+public class CategoryServiceImpl {
 
     private CategoryDaoImpl categoryDaoImpl = new CategoryDaoImpl();
 
