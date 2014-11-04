@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PromotionDaoImpl extends DbUtils{
+public class PromotionDaoImpl extends DbUtils implements PromotionDao {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
+    @Override
     public List<Integer> getPromotionTypes(int id) throws SQLException {
 
         List<Integer> promotionTypes = new ArrayList<Integer>();
@@ -31,6 +32,7 @@ public class PromotionDaoImpl extends DbUtils{
         return promotionTypes;
     }
 
+    @Override
     public int getDiscount(int id) throws Exception{
         String sql = "select discount from productPromotions where product_id = ? and promotion_id = 3";
 

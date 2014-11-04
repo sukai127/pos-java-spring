@@ -7,12 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CategoryDaoImpl extends DbUtils{
+public class CategoryDaoImpl extends DbUtils implements CategoryDao {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
+    @Override
     public Category getCategory(int productId) throws SQLException {
 
         String sql = "select * from category c,product p where p.category_id = c.id and p.id=?";

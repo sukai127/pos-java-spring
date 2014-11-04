@@ -5,12 +5,13 @@ import com.thoughtworks.iamcoach.pos.model.Product;
 import java.sql.*;
 import java.util.*;
 
-public class ProductDaoImpl extends DbUtils{
+public class ProductDaoImpl extends DbUtils implements ProductDao {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
+    @Override
     public List<Product> getProductList() throws SQLException {
         List<Product> productList = new ArrayList<Product>();
         String sql = "select * from product";
