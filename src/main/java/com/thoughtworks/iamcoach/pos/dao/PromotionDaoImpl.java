@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PromotionDao extends DbUtils{
+public class PromotionDaoImpl extends DbUtils{
 
     private Connection connection;
     private PreparedStatement preparedStatement;
