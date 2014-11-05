@@ -15,4 +15,13 @@
             <ref bean="dataSourse"/>
         </constructor-arg>
     </bean>
+
+    <bean id="productDao" class="com.thoughtworks.iamcoach.pos.dao.ProductDaoImpl">
+    </bean>
+
+    <bean id="productService" class="com.thoughtworks.iamcoach.pos.service.ProductServiceImpl">
+        <constructor-arg>
+            <ref bean="productDao"/>
+        </constructor-arg>
+    </bean>
 </beans>

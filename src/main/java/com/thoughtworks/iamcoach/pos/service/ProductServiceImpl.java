@@ -1,7 +1,6 @@
 package com.thoughtworks.iamcoach.pos.service;
 
 import com.thoughtworks.iamcoach.pos.dao.ProductDao;
-import com.thoughtworks.iamcoach.pos.dao.ProductDaoImpl;
 import com.thoughtworks.iamcoach.pos.model.Product;
 
 import java.sql.SQLException;
@@ -13,7 +12,7 @@ public class ProductServiceImpl implements ProductService {
     private CategoryService categoryService = new CategoryServiceImpl();
     private PromotionService promotionService = new PromotionServiceImpl();
 
-    public ProductServiceImpl(ProductDaoImpl productDao) {
+    public ProductServiceImpl(ProductDao productDao) {
         this.productDao = productDao;
     }
 

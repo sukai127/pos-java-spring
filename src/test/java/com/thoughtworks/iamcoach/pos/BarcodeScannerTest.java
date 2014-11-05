@@ -1,21 +1,17 @@
 package com.thoughtworks.iamcoach.pos;
 
 import com.google.common.collect.ImmutableList;
-import com.thoughtworks.iamcoach.pos.dao.ProductDaoImpl;
 import com.thoughtworks.iamcoach.pos.model.CartItem;
 import com.thoughtworks.iamcoach.pos.model.Category;
 import com.thoughtworks.iamcoach.pos.model.Product;
-import com.thoughtworks.iamcoach.pos.service.ProductService;
 import com.thoughtworks.iamcoach.pos.service.ProductServiceImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.*;
-import java.io.IOException;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -52,15 +48,14 @@ public class BarcodeScannerTest {
 
         List<String> list = new ArrayList<String>();
 
-        list.add("ITEM000001");
-        list.add("ITEM000001");
-        list.add("ITEM000003-2.5");
-        list.add("ITEM000005");
+        list.add("ITEM000000");
+        list.add("ITEM000000");
+        list.add("ITEM000001-2.5");
+        list.add("ITEM000002");
 
         List<CartItem> cartItemList = barcodeScanner.scan(list);
-
         assertThat(cartItemList.size()).isEqualTo(3);
         assertThat(cartItemList.get(0).getCount()).isEqualTo(2);
-        assertThat(cartItemList.get(0).getProduct().getName()).isEqualTo("雪碧");
+        assertThat(cartItemList.get(0).getProduct().getName()).isEqualTo("可乐");
     }
 }
