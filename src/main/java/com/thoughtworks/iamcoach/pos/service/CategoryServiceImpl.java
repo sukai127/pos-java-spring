@@ -11,7 +11,7 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryDao categoryDao;
 
     public CategoryServiceImpl(CategoryDao categoryDao) {
-
+        this.categoryDao = categoryDao;
     }
 
     public CategoryServiceImpl(){

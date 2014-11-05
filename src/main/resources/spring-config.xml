@@ -23,5 +23,17 @@
         <constructor-arg>
             <ref bean="productDao"/>
         </constructor-arg>
+        <constructor-arg>
+            <ref bean="categoryService"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="categoryService" class="com.thoughtworks.iamcoach.pos.service.CategoryServiceImpl">
+        <constructor-arg>
+            <ref bean="categoryDao"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="categoryDao" class="com.thoughtworks.iamcoach.pos.dao.CategoryDaoImpl">
     </bean>
 </beans>

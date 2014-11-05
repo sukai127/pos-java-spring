@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.thoughtworks.iamcoach.pos.dao.ProductDaoImpl;
 import com.thoughtworks.iamcoach.pos.model.Category;
 import com.thoughtworks.iamcoach.pos.model.Product;
+import com.thoughtworks.iamcoach.pos.service.CategoryServiceImpl;
 import com.thoughtworks.iamcoach.pos.service.ProductService;
 import com.thoughtworks.iamcoach.pos.service.ProductServiceImpl;
 import org.junit.BeforeClass;
@@ -31,7 +32,11 @@ public class ProductServiceImplTest {
                 new Product(3, "ITEM000002", "苹果", "斤", 4.5, new Category(2,"水果"), null));
 
         when(productDao.getProductList()).thenReturn(products);
-        productService = new ProductServiceImpl(productDao);
+
+        CategoryServiceImpl categoryService = mock(CategoryServiceImpl.class);
+
+        when(categoryService.getCategory(1)).thenReturn(new Category(1,"饮料"));
+        productService = new ProductServiceImpl(productDao,categoryService);
     }
 
     @Test

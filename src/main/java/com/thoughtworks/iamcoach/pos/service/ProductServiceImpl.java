@@ -9,11 +9,12 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private ProductDao productDao;
-    private CategoryService categoryService = new CategoryServiceImpl();
+    private CategoryService categoryService;
     private PromotionService promotionService = new PromotionServiceImpl();
 
-    public ProductServiceImpl(ProductDao productDao) {
+    public ProductServiceImpl(ProductDao productDao,CategoryService categoryService) {
         this.productDao = productDao;
+        this.categoryService = categoryService;
     }
 
     public ProductServiceImpl(){
