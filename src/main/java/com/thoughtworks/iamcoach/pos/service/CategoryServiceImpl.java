@@ -8,8 +8,15 @@ import java.sql.SQLException;
 
 public class CategoryServiceImpl implements CategoryService {
 
-    private CategoryDao categoryDao = new CategoryDaoImpl();
+    private CategoryDao categoryDao;
 
+    public CategoryServiceImpl(CategoryDao categoryDao) {
+
+    }
+
+    public CategoryServiceImpl(){
+
+    }
     @Override
     public Category getCategory(int id) throws SQLException {
         return categoryDao.getCategory(id);
