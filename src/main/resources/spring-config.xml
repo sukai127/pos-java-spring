@@ -10,7 +10,7 @@
         <property name="password" value="admin"/>
     </bean>
 
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg>
             <ref bean="dataSourse"/>
         </constructor-arg>
@@ -38,6 +38,7 @@
     </bean>
 
     <bean id="categoryDao" class="com.thoughtworks.iamcoach.pos.dao.CategoryDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
     <bean id="promotionService" class="com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl">

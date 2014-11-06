@@ -1,30 +1,35 @@
 package com.thoughtworks.iamcoach.pos.dao;
 
 import com.thoughtworks.iamcoach.pos.model.Category;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CategoryDaoImpl extends DbUtils implements CategoryDao {
+public class CategoryDaoImpl implements CategoryDao {
 
-    private Connection connection;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
+    private JdbcTemplate jdbcTemplate ;
+
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Category getCategory(int productId) throws SQLException {
 
-        String sql = "select * from category c,product p where p.category_id = c.id and p.id=?";
+        String sql = "select c.* from category c,product p where p.category_id = c.id and p.id=?";
 
-        connection = getConnection();
-        preparedStatement=connection.prepareStatement(sql);
-        preparedStatement.setInt(1,productId);
-        resultSet = preparedStatement.executeQuery();
+        Category category = jdbcTemplate.query(sql,new Object[]{productId},new RowMapper<Category>() {
+            @Override
+            public Category mapRow(ResultSet resultSet, int i) throws SQLException {
+                return new Category(resultSet.getInt("id"), resultSet.getString("name"));
+            }
+        }).get(0);
 
-        resultSet.next();
-        Category category = new Category(resultSet.getInt("id"),resultSet.getString("name"));
         return category;
     }
 }
