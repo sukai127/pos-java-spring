@@ -21,12 +21,13 @@ public class PromotionServiceImplTest {
 
     private PromotionService promotionService;
     @Before
-    public void init() throws SQLException {
+    public void init() throws Exception {
 
         PromotionDao promotionDao = mock(PromotionDaoImpl.class);
         ImmutableList<Integer> types = ImmutableList.of(0,1,2);
 
         when(promotionDao.getPromotionTypes(2)).thenReturn(types);
+        when(promotionDao.getDiscount(2)).thenReturn(75);
 
         promotionService = new PromotionServiceImpl(promotionDao);
     }
@@ -50,8 +51,6 @@ public class PromotionServiceImplTest {
 
     @Test
     public void should_return_75_when_input_productId() throws Exception{
-
-        PromotionService promotionService = new PromotionServiceImpl();
 
         int result = promotionService.getDiscount(2);
 
