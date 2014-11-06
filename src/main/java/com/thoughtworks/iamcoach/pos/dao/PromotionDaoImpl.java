@@ -3,17 +3,11 @@ package com.thoughtworks.iamcoach.pos.dao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PromotionDaoImpl extends DbUtils implements PromotionDao {
-
-    private Connection connection;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
+public class PromotionDaoImpl implements PromotionDao {
 
     private JdbcTemplate jdbcTemplate ;
 
@@ -43,15 +37,17 @@ public class PromotionDaoImpl extends DbUtils implements PromotionDao {
 
     @Override
     public int getDiscount(int id) throws Exception{
+
         String sql = "select discount from productPromotions where product_id = ? and promotion_id = 3";
 
-        connection = getConnection();
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1,id);
-        resultSet = preparedStatement.executeQuery();
+        int discount = jdbcTemplate.query(sql,new Object[]{id},new RowMapper<Integer>() {
 
-        resultSet.next();
+            @Override
+            public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getInt("discount");
+            }
+        }).get(0);
 
-        return resultSet.getInt("discount");
+        return discount;
     }
 }
