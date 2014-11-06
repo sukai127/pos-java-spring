@@ -53,6 +53,8 @@
     </bean>
 
     <bean id="promotionDao" class="com.thoughtworks.iamcoach.pos.dao.PromotionDaoImpl">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <constructor-arg>
+            <ref bean="jdbcTemplate"/>
+        </constructor-arg>
     </bean>
 </beans>
