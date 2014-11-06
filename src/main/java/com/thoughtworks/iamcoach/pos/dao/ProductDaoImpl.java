@@ -11,12 +11,11 @@ public class ProductDaoImpl implements ProductDao {
 
     private JdbcTemplate jdbcTemplate ;
 
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
+    public ProductDaoImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public ProductDaoImpl() {
     }
 
     @Override
