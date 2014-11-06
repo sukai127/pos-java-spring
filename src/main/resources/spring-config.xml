@@ -17,6 +17,7 @@
     </bean>
 
     <bean id="productDao" class="com.thoughtworks.iamcoach.pos.dao.ProductDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
     <bean id="productService" class="com.thoughtworks.iamcoach.pos.service.ProductServiceImpl">
