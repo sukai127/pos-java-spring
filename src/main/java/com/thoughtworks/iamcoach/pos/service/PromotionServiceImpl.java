@@ -57,7 +57,7 @@ public class PromotionServiceImpl implements PromotionService {
         List<Promotion> promotionList = new ArrayList<Promotion>();
 
         for(Integer type : promotionTypes){
-            Promotion promotion = PromotionFactory.getInstance(type);
+            Promotion promotion = PromotionFactory.getInstance(type,this);
             promotionList.add(promotion);
         }
 

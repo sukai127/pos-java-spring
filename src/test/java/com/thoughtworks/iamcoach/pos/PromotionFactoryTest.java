@@ -12,7 +12,7 @@ public class PromotionFactoryTest {
     @Test
     public void should_return_discountPromotion_when_input_2(){
 
-        Promotion promotion = PromotionFactory.getInstance(2);
+        Promotion promotion = PromotionFactory.getInstance(2,null);
 
         assertThat(promotion instanceof DiscountPromotion).isEqualTo(true);
 

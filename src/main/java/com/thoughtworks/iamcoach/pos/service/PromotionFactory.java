@@ -8,7 +8,7 @@ public class PromotionFactory {
     public static final int SECOND_HALF_PRICE = 1;
     public static final int DISCOUNT = 2;
 
-    public static Promotion getInstance(int type){
+    public static Promotion getInstance(int type,PromotionService promotionService){
         Promotion promotion = null;
         switch (type) {
             case PromotionFactory.BUY_TWO_GET_ONE:
@@ -18,7 +18,7 @@ public class PromotionFactory {
                 promotion = new SecondHalfPricePromotion();
                 break;
             case PromotionFactory.DISCOUNT:
-                promotion = new DiscountPromotion();
+                promotion = new DiscountPromotion(promotionService);
                 break;
             default:
                 break;
