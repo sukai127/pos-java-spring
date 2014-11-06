@@ -15,8 +15,11 @@ public class App {
             List list = FileUtils.get("cart.txt");
             ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
             ProductService productService = (ProductService) context.getBean("productService");
+
             Scanner scanner = new BarcodeScanner(productService);
-            PromotionService promotionService = new PromotionServiceImpl();
+
+            PromotionService promotionService = (PromotionService) context.getBean("promotionService");
+
             Pos pos = new Pos(scanner, promotionService);
             pos.printInventory(list);
 
