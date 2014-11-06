@@ -1,8 +1,12 @@
 package com.thoughtworks.iamcoach.pos;
 
+import com.google.common.collect.ImmutableList;
+import com.thoughtworks.iamcoach.pos.dao.PromotionDao;
+import com.thoughtworks.iamcoach.pos.dao.PromotionDaoImpl;
 import com.thoughtworks.iamcoach.pos.model.*;
 import com.thoughtworks.iamcoach.pos.service.PromotionService;
 import com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -10,8 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class PromotionServiceImplTest {
+
+    private PromotionService promotionService;
+    @Before
+    public void init() throws SQLException {
+
+        PromotionDao promotionDao = mock(PromotionDaoImpl.class);
+        ImmutableList<Integer> types = ImmutableList.of(0,1,2);
+
+        when(promotionDao.getPromotionTypes(2)).thenReturn(types);
+
+        promotionService = new PromotionServiceImpl(promotionDao);
+    }
+
     @Test
     public void should_return_12_when_input_cartItem(){
 
@@ -41,7 +60,6 @@ public class PromotionServiceImplTest {
 
     @Test
     public void should_return_promotionList_when_input_productId() throws SQLException {
-        PromotionService promotionService = new PromotionServiceImpl();
 
         List<Promotion> promotions = promotionService.getPromotionList(2);
 

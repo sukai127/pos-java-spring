@@ -12,8 +12,15 @@ import java.util.List;
 
 public class PromotionServiceImpl implements PromotionService {
 
-    private PromotionDao promotionDao = new PromotionDaoImpl();
+    private PromotionDao promotionDao;
 
+    public PromotionServiceImpl(PromotionDao promotionDao) {
+
+    }
+
+    public PromotionServiceImpl(){
+
+    }
     @Override
     public double calculateMoney(CartItem cartItem) {
 
