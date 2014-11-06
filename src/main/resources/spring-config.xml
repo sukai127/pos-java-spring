@@ -39,7 +39,9 @@
     </bean>
 
     <bean id="categoryDao" class="com.thoughtworks.iamcoach.pos.dao.CategoryDaoImpl">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <constructor-arg>
+            <ref bean="jdbcTemplate"/>
+        </constructor-arg>
     </bean>
 
     <bean id="promotionService" class="com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl">

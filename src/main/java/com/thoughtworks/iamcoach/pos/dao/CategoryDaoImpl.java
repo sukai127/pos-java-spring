@@ -10,12 +10,11 @@ public class CategoryDaoImpl implements CategoryDao {
 
     private JdbcTemplate jdbcTemplate ;
 
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
+    public CategoryDaoImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public CategoryDaoImpl() {
     }
 
     @Override
