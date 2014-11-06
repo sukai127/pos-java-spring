@@ -15,7 +15,7 @@ public class PromotionServiceImpl implements PromotionService {
     private PromotionDao promotionDao;
 
     public PromotionServiceImpl(PromotionDao promotionDao) {
-
+        this.promotionDao = promotionDao;
     }
 
     public PromotionServiceImpl(){

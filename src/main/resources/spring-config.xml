@@ -26,6 +26,9 @@
         <constructor-arg>
             <ref bean="categoryService"/>
         </constructor-arg>
+        <constructor-arg>
+            <ref bean="promotionService"/>
+        </constructor-arg>
     </bean>
 
     <bean id="categoryService" class="com.thoughtworks.iamcoach.pos.service.CategoryServiceImpl">
@@ -35,5 +38,14 @@
     </bean>
 
     <bean id="categoryDao" class="com.thoughtworks.iamcoach.pos.dao.CategoryDaoImpl">
+    </bean>
+
+    <bean id="promotionService" class="com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl">
+        <constructor-arg>
+            <ref bean="promotionDao"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="promotionDao" class="com.thoughtworks.iamcoach.pos.dao.PromotionDaoImpl">
     </bean>
 </beans>

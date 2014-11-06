@@ -10,11 +10,12 @@ public class ProductServiceImpl implements ProductService {
 
     private ProductDao productDao;
     private CategoryService categoryService;
-    private PromotionService promotionService = new PromotionServiceImpl();
+    private PromotionService promotionService;
 
-    public ProductServiceImpl(ProductDao productDao,CategoryService categoryService) {
+    public ProductServiceImpl(ProductDao productDao,CategoryService categoryService,PromotionService promotionService) {
         this.productDao = productDao;
         this.categoryService = categoryService;
+        this.promotionService = promotionService;
     }
 
     public ProductServiceImpl(){

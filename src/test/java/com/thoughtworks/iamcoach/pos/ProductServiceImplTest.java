@@ -2,11 +2,11 @@ package com.thoughtworks.iamcoach.pos;
 
 import com.google.common.collect.ImmutableList;
 import com.thoughtworks.iamcoach.pos.dao.ProductDaoImpl;
-import com.thoughtworks.iamcoach.pos.model.Category;
-import com.thoughtworks.iamcoach.pos.model.Product;
+import com.thoughtworks.iamcoach.pos.model.*;
 import com.thoughtworks.iamcoach.pos.service.CategoryServiceImpl;
 import com.thoughtworks.iamcoach.pos.service.ProductService;
 import com.thoughtworks.iamcoach.pos.service.ProductServiceImpl;
+import com.thoughtworks.iamcoach.pos.service.PromotionService;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -36,7 +36,17 @@ public class ProductServiceImplTest {
         CategoryServiceImpl categoryService = mock(CategoryServiceImpl.class);
 
         when(categoryService.getCategory(1)).thenReturn(new Category(1,"饮料"));
-        productService = new ProductServiceImpl(productDao,categoryService);
+
+        PromotionService promotionService = mock(PromotionService.class);
+
+        ImmutableList<Promotion> promotions = ImmutableList.of(
+                new DiscountPromotion(),
+                new SecondHalfPricePromotion(),
+                new BuyTwoGetOnePromotion());
+
+        when(promotionService.getPromotionList(3)).thenReturn(promotions);
+
+        productService = new ProductServiceImpl(productDao,categoryService,promotionService);
     }
 
     @Test
@@ -47,5 +57,6 @@ public class ProductServiceImplTest {
         assertThat(productList.size()).isEqualTo(3);
         assertThat(productList.get(0).getCategory().getName()).isEqualTo("饮料");
         assertThat(productList.get(0).getName()).isEqualTo("可乐");
+        assertThat(productList.get(2).getPromotions().size()).isEqualTo(3);
     }
 }
