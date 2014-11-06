@@ -22,6 +22,18 @@
         </constructor-arg>
     </bean>
 
+    <bean id="categoryDao" class="com.thoughtworks.iamcoach.pos.dao.CategoryDaoImpl">
+        <constructor-arg>
+            <ref bean="jdbcTemplate"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="promotionDao" class="com.thoughtworks.iamcoach.pos.dao.PromotionDaoImpl">
+        <constructor-arg>
+            <ref bean="jdbcTemplate"/>
+        </constructor-arg>
+    </bean>
+
     <bean id="productService" class="com.thoughtworks.iamcoach.pos.service.ProductServiceImpl">
         <constructor-arg>
             <ref bean="productDao"/>
@@ -40,21 +52,10 @@
         </constructor-arg>
     </bean>
 
-    <bean id="categoryDao" class="com.thoughtworks.iamcoach.pos.dao.CategoryDaoImpl">
-        <constructor-arg>
-            <ref bean="jdbcTemplate"/>
-        </constructor-arg>
-    </bean>
-
     <bean id="promotionService" class="com.thoughtworks.iamcoach.pos.service.PromotionServiceImpl">
         <constructor-arg>
             <ref bean="promotionDao"/>
         </constructor-arg>
     </bean>
 
-    <bean id="promotionDao" class="com.thoughtworks.iamcoach.pos.dao.PromotionDaoImpl">
-        <constructor-arg>
-            <ref bean="jdbcTemplate"/>
-        </constructor-arg>
-    </bean>
 </beans>
