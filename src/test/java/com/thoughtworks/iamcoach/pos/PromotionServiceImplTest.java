@@ -35,14 +35,16 @@ public class PromotionServiceImplTest {
     @Test
     public void should_return_12_when_input_cartItem(){
 
+        PromotionService service = mock(PromotionService.class);
+        when(service.getDiscount(2)).thenReturn(75);
+
         List<Promotion> list = new ArrayList<Promotion>();
         list.add(new BuyTwoGetOnePromotion());
         list.add(new SecondHalfPricePromotion());
-        list.add(new DiscountPromotion());
+        list.add(new DiscountPromotion(service));
 
-        Product product = new Product(1,"ITEM000001","可乐","瓶",3.00,null,list);
+        Product product = new Product(2,"ITEM000001","可乐","瓶",3.00,null,list);
         CartItem cartItem = new CartItem(product,6);
-        PromotionService promotionService = new PromotionServiceImpl();
 
         double money = promotionService.calculateMoney(cartItem);
 

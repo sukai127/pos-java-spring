@@ -8,7 +8,7 @@ public class DiscountPromotion extends Promotion{
     private PromotionService promotionService;
 
     public DiscountPromotion(PromotionService promotionService) {
-
+        this.promotionService = promotionService;
     }
 
     public DiscountPromotion(){
