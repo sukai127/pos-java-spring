@@ -8,6 +8,7 @@ import com.thoughtworks.iamcoach.pos.model.Promotion;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class PromotionServiceImpl implements PromotionService {
@@ -26,17 +27,16 @@ public class PromotionServiceImpl implements PromotionService {
 
         List<Promotion> list = cartItem.getProduct().getPromotions();
         double result = cartItem.getProduct().getPrice() * cartItem.getCount();
-        double money[] = new double[list.size()];
+        List<Double> money = new ArrayList<Double>();
         Promotion promotion;
 
         for (int i = 0; i < list.size(); i++) {
             promotion = list.get(i);
             double subTotal = promotion.getMoney(cartItem);
-            money[i] = subTotal;
+            money.add(subTotal);
         }
-        Arrays.sort(money);
 
-        return money.length == 0 ? result : money[0];
+        return money.size() == 0 ? result : Collections.min(money);
     }
 
 
