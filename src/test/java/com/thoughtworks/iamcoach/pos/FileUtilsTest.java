@@ -17,12 +17,4 @@ public class FileUtilsTest {
         List list = FileUtils.get("cart.txt");
         assertThat(list.size()).isEqualTo(14);
     }
-
-    @Test
-    public void should_return_pos_when_input_key() throws Exception{
-
-        String value = FileUtils.getValue("user");
-        assertThat(value).isEqualTo("pos");
-
-    }
 }
