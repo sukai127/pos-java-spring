@@ -35,8 +35,8 @@ public class BarcodeScanner implements Scanner{
     public List scan(List<String> barcodes) throws Exception {
         List<CartItem> cartitemList = new ArrayList<CartItem>();
 
-        for(String str : barcodes){
-            cartitemList = this.addCount(str,cartitemList);
+        for(String barcode : barcodes){
+            cartitemList = this.addCount(barcode,cartitemList);
         }
         Collections.sort(cartitemList);
         return cartitemList;
@@ -52,9 +52,9 @@ public class BarcodeScanner implements Scanner{
         return -1;
     }
 
-    private List<CartItem> addCount(String str, List<CartItem> cartitemList) throws Exception {
+    private List<CartItem> addCount(String barcodeString, List<CartItem> cartitemList) throws Exception {
 
-        String []fields = str.split("-");
+        String []fields = barcodeString.split("-");
         String barcode = fields[0];
         double count = this.getCount(fields);
 
