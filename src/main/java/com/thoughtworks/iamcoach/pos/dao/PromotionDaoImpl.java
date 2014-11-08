@@ -35,7 +35,7 @@ public class PromotionDaoImpl implements PromotionDao {
     }
 
     @Override
-    public int getDiscount(int id) throws Exception{
+    public int getDiscount(int id){
 
         String sql = "select discount from productPromotions where product_id = ? and promotion_id = 3";
 

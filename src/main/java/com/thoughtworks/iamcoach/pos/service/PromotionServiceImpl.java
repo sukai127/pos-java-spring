@@ -42,12 +42,7 @@ public class PromotionServiceImpl implements PromotionService {
 
     @Override
     public int getDiscount(int id){
-
-        try {
-            return promotionDao.getDiscount(id);
-        } catch (Exception e) {
-            return 100;
-        }
+        return promotionDao.getDiscount(id);
     }
 
     @Override

@@ -9,5 +9,5 @@ import java.util.List;
 public interface PromotionDao {
     List<Integer> getPromotionTypes(int id) throws SQLException;
 
-    int getDiscount(int id) throws Exception;
+    int getDiscount(int id);
 }
