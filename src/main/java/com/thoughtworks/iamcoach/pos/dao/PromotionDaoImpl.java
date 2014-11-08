@@ -39,13 +39,13 @@ public class PromotionDaoImpl implements PromotionDao {
 
         String sql = "select discount from productPromotions where product_id = ? and promotion_id = 3";
 
-        int discount = jdbcTemplate.query(sql,new Object[]{id},new RowMapper<Integer>() {
+        int discount = jdbcTemplate.queryForObject(sql,new Object[]{id},new RowMapper<Integer>() {
 
             @Override
             public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
                 return resultSet.getInt("discount");
             }
-        }).get(0);
+        });
 
         return discount;
     }

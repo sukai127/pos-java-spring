@@ -22,12 +22,12 @@ public class CategoryDaoImpl implements CategoryDao {
 
         String sql = "select c.* from category c,product p where p.category_id = c.id and p.id=?";
 
-        Category category = jdbcTemplate.query(sql,new Object[]{productId},new RowMapper<Category>() {
+        Category category = jdbcTemplate.queryForObject(sql,new Object[]{productId},new RowMapper<Category>() {
             @Override
             public Category mapRow(ResultSet resultSet, int i) throws SQLException {
                 return new Category(resultSet.getInt("id"), resultSet.getString("name"));
             }
-        }).get(0);
+        });
 
         return category;
     }
